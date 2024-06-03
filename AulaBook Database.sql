@@ -8,7 +8,6 @@ CREATE TABLE USARIO(
 	Departamento varchar(30)NOT NULL,
 );
 
-
 --TABLA ALUMNO
 CREATE TABLE ALUMNO(
 	Carnet char(11) PRIMARY KEY NOT NULL,
@@ -18,15 +17,10 @@ CREATE TABLE ALUMNO(
 	Trimestre bool NOT NULL
 );
 
-
 --TABLA MODULO
 CREATE TABLE MODULO(
 	Modulo_ID varchar(20) PRIMARY KEY NOT NULL
 );
-
-
-
-
 
 --TABLA AULA
 CREATE TABLE AULA(
@@ -40,7 +34,6 @@ CREATE TABLE AULA(
 	FOREIGN KEY (Modulo_ID) REFERENCES MODULO(Modulo_ID)
 );
 
-
 --TABLA RESERVA
 CREATE TABLE RESERVA(
 	Num_reserva serial PRIMARY KEY NOT NULL,
@@ -48,8 +41,25 @@ CREATE TABLE RESERVA(
 	Carnet char(11) NOT NULL,
 	Categoria varchar(30) NOT NULL CHECK(Categoria IN('Clases','Preparaduria','Evento')),
 	Descripcion varchar(50) NOT NULL,
-	Status ENUM('pendiente','aprobado','rechazado'),
+	Status ENUM('pendiente','aprobado','rechazado','cancelado'),
 	FOREIGN KEY (Nombre_salon) REFERENCES AULA(Nombre_salon),
 	FOREIGN KEY (Carnet) REFERENCES ALUMNO(Carnet)
 	
 );
+
+
+
+-- INSERTS
+
+--MODULO
+
+INSERT INTO public.modulo(Modulo_ID)
+VALUES
+	('A1'),
+	('A2');
+
+INSERT INTO public.aula(Nombre_salon, Modulo_ID,Aire,Video_beam,Pizarra,Computadora,Pupitres)
+VALUES
+	('A1-101','A1',FALSE,FALSE,TRUE,TRUE,TRUE,30),
+	('A2-101','A2',FALSE,FALSE,TRUE,TRUE,TRUE,50);
+
