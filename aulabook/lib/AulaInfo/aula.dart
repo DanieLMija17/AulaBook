@@ -12,6 +12,30 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text('AulaBook'),
+          automaticallyImplyLeading: false,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xFFF3F8FE),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back, color: Color(0xFFB8B8B8)),
+                  onPressed: () {},
+                  iconSize: 24,
+                  padding: EdgeInsets.zero,
+                  constraints: BoxConstraints(
+                    minHeight: 40,
+                    minWidth: 40,
+                  ),
+                  splashRadius: 24,
+                ),
+              ),
+            ),
+          ),
         ),
         body: DescriptionWidget(),
       ),
@@ -151,5 +175,7 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
     );
   }
 }
+
+
 
 
