@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Image.asset('assets/salon_unimet1.jpg')
-
 void main() {
   runApp(MyApp());
 }
@@ -10,15 +8,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text('AulaBook'),
         ),
-        body: Padding(
+        body: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20.0),
+                child: Image.asset(
+                  'assets/salon_unimet1.jpg',
+                  width: 335,
+                  height: 300, // Ajustamos la altura para que entre en la pantalla
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(height: 16), // Espacio entre la imagen y el texto "A1-204"
               Text(
                 'A1-204',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -119,3 +128,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
