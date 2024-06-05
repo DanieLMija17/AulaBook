@@ -9,6 +9,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: 'CircularXX',
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: Text('AulaBook'),
@@ -65,9 +68,9 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
           ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
             child: Image.asset(
-              'assets/salon_unimet1.jpg',
-              width: screenWidth * 0.9, // Ajustamos el ancho relativo al tamaño de la pantalla
-              height: screenWidth * 0.8, // Ajustamos la altura relativa al tamaño de la pantalla
+              'assets/images/salon_unimet1.jpg',
+              width: screenWidth * 0.9,
+              height: screenWidth * 0.8,
               fit: BoxFit.cover,
             ),
           ),
@@ -106,11 +109,13 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
               ),
               label: Text(
                 _isExpanded ? 'Leer menos' : 'Leer más',
-                style: TextStyle(color: Color(0xFFFD8204)),
+                style: TextStyle(
+                  fontSize: screenWidth * 0.04,
+                  color: Color(0xFFFD8204),
+                ),
               ),
               style: TextButton.styleFrom(
-                padding: EdgeInsets.zero,
-                side: BorderSide.none,
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20), // Ajusta el padding para el botón
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
             ),
@@ -181,6 +186,8 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
     );
   }
 }
+
+
 
 
 

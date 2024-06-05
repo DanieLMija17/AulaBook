@@ -60,7 +60,28 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-  - assets/
+  - assets/images/
+  fonts:
+      - family: CircularXX
+        fonts:
+          - asset: assets/fonts/CircularXX-Regular.otf
+          - asset: assets/fonts/CircularXX-Bold.otf
+          - asset: assets/fonts/CircularXX-BoldItalic.otf
+          - asset: assets/fonts/CircularXX-Black.otf
+          - asset: assets/fonts/CircularXX-BlackItalic.otf
+          - asset: assets/fonts/CircularXX-Book.otf
+          - asset: assets/fonts/CircularXX-BookItalic.otf
+          - asset: assets/fonts/CircularXX-ExtraBlack.otf
+          - asset: assets/fonts/CircularXX-ExtraBlackItalic.otf
+          - asset: assets/fonts/CircularXX-Italic.otf
+          - asset: assets/fonts/CircularXX-Light.otf
+          - asset: assets/fonts/CircularXX-LightItalic.otf
+          - asset: assets/fonts/CircularXX-Medium.otf          
+          - asset: assets/fonts/CircularXX-MediumItalic.otf   
+          - asset: assets/fonts/CircularXX-Thin.otf
+          - asset: assets/fonts/CircularXX-ThinItalic.otf
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
