@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:aulabook/Componentes/custom_button.dart';
 
 void main() {
   runApp(MyApp());
@@ -56,7 +57,6 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // Obtenemos el tamaño de la pantalla
     var screenSize = MediaQuery.of(context).size;
     var screenWidth = screenSize.width;
 
@@ -74,10 +74,13 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
               fit: BoxFit.cover,
             ),
           ),
-          SizedBox(height: 16), // Espacio entre la imagen y el texto "A1-204"
+          SizedBox(height: 16),
           Text(
             'A1-204',
-            style: TextStyle(fontSize: screenWidth * 0.06, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: screenWidth * 0.06,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           SizedBox(height: 8),
           Row(
@@ -115,7 +118,7 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
                 ),
               ),
               style: TextButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20), // Ajusta el padding para el botón
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
             ),
@@ -123,7 +126,10 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
           SizedBox(height: 16),
           Text(
             'Comodidades',
-            style: TextStyle(fontSize: screenWidth * 0.05, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: screenWidth * 0.05,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           SizedBox(height: 8),
           Row(
@@ -164,22 +170,11 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
             ],
           ),
           SizedBox(height: 16),
-          Center(
-            child: SizedBox(
-              width: screenWidth * 0.85, // Ajustamos el ancho relativo al tamaño de la pantalla
-              height: screenWidth * 0.14, // Ajustamos la altura relativa al tamaño de la pantalla
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFFD8204), // Color de fondo
-                  foregroundColor: Colors.white, // Color del texto
-                  textStyle: TextStyle(fontSize: screenWidth * 0.045),
-                  elevation: 4, // Elevación para el efecto de sombra
-                  shadowColor: Color(0x3D0038FF), // Color de la sombra con 24% de opacidad
-                ),
-                child: Text('Reservar'),
-              ),
-            ),
+          CustomButton(
+            width: screenWidth * 0.85,
+            height: screenWidth * 0.14,
+            onPressed: () {},
+            label: 'Reservar',
           ),
         ],
       ),

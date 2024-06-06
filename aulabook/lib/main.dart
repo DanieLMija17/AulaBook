@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-// Image.asset('assets/salon_unimet1.jpg')
+import 'package:aulabook/Componentes/custom_button.dart';
+import 'package:aulabook/SearchPage/search.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,106 +11,75 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('AulaBook'),
-        ),
-        body: Padding(
+      theme: ThemeData(
+        fontFamily: 'CircularXX',
+      ),
+      home: InicioScreen(),
+    );
+  }
+}
+
+class InicioScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    var screenWidth = screenSize.width;
+
+    return Scaffold(
+      body: Center(
+        child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              SizedBox(height: screenWidth * 0.1), // Ajuste responsivo para el espacio superior
               Text(
-                'A1-204',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8),
-              Row(
-                children: [
-                  Icon(Icons.star, color: Colors.yellow, size: 16),
-                  SizedBox(width: 4),
-                  Text('4.5 (355 Reviews)', style: TextStyle(fontSize: 16)),
-                ],
-              ),
-              SizedBox(height: 8),
-              Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget porta tellus, non ultricies risus. Nam et metus eget ipsum tempor consequat et eget risus....',
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(height: 16),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: TextButton.icon(
-                  onPressed: () {},
-                  icon: Icon(Icons.keyboard_arrow_down, color: Color(0xFFFD8204)),
-                  label: Text(
-                    'Leer más',
-                    style: TextStyle(color: Color(0xFFFD8204)),
-                  ),
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    side: BorderSide.none,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  ),
+                'AulaBook',
+                style: TextStyle(
+                  fontSize: screenWidth * 0.12, // Ajuste responsivo para el tamaño del texto
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 16),
-              Text(
-                'Comodidades',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8),
-              Row(
-                children: [
-                  Icon(Icons.wifi),
-                  SizedBox(width: 8),
-                  Text('Wifi', style: TextStyle(fontSize: 16)),
-                ],
-              ),
-              SizedBox(height: 8),
-              Row(
-                children: [
-                  Icon(Icons.group),
-                  SizedBox(width: 8),
-                  Text('26 Puestos', style: TextStyle(fontSize: 16)),
-                ],
-              ),
-              SizedBox(height: 8),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    children: [
-                      Icon(Icons.business),
-                      SizedBox(height: 8),
-                      Icon(Icons.ac_unit),
-                    ],
-                  ),
-                  SizedBox(width: 8),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('2 Pizarras', style: TextStyle(fontSize: 16)),
-                      SizedBox(height: 8),
-                      Text('Aire', style: TextStyle(fontSize: 16)),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 16),
-              Center(
-                child: SizedBox(
-                  width: 330,
-                  height: 56,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFFD8204), // Color de fondo
-                      foregroundColor: Colors.white, // Color del texto
-                      textStyle: TextStyle(fontSize: 16),
+              Padding(
+                padding: EdgeInsets.only(left: screenWidth * 0.05), // Ajuste responsivo para el margen izquierdo
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: screenWidth * 0.85, // Ancho igual al botón
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Reserva tu',
+                            style: TextStyle(
+                              fontSize: screenWidth * 0.06, // Ajuste responsivo para el tamaño del texto
+                            ),
+                          ),
+                          Text(
+                            'Aula sin problemas!',
+                            style: TextStyle(
+                              fontSize: screenWidth * 0.08, // Ajuste responsivo para el tamaño del texto
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    child: Text('Reservar'),
-                  ),
+                    SizedBox(height: screenWidth * 0.05), // Espacio responsivo entre el texto y el botón
+                    CustomButton(
+                      width: screenWidth * 0.85,
+                      height: screenWidth * 0.14,
+                      onPressed: () {
+                        // Navegar a la segunda vista cuando se presiona el botón
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MySearch()),
+                        );
+                      },
+                      label: 'Comenzar',
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -120,4 +89,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
