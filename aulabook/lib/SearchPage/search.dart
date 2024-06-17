@@ -8,6 +8,15 @@ class MySearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.system, // Esto hace que la aplicación use el tema del sistema (claro u oscuro)
+      theme: ThemeData(
+         brightness: Brightness.light, // Tema claro
+        fontFamily: 'CircularXX',
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark, // Tema oscuro
+        fontFamily: 'CircularXX',
+      ), 
       home: SearchPage(),
     );
   }

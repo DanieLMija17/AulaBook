@@ -10,7 +10,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.system, // Esto hace que la aplicación use el tema del sistema (claro u oscuro)
       theme: ThemeData(
+        brightness: Brightness.light, // Tema claro
+        fontFamily: 'CircularXX',
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark, // Tema oscuro
         fontFamily: 'CircularXX',
       ),
       home: Scaffold(
@@ -87,7 +93,8 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
             children: [
               Icon(Icons.star, color: Colors.yellow, size: screenWidth * 0.04),
               SizedBox(width: 4),
-              Text('4.5 (355 Reviews)', style: TextStyle(fontSize: screenWidth * 0.04)),
+              Text('4.5 (355 Reviews)',
+                  style: TextStyle(fontSize: screenWidth * 0.04)),
             ],
           ),
           SizedBox(height: 8),
@@ -107,7 +114,9 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
                 });
               },
               icon: Icon(
-                _isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                _isExpanded
+                    ? Icons.keyboard_arrow_up
+                    : Icons.keyboard_arrow_down,
                 color: Color(0xFFFD8204),
               ),
               label: Text(
@@ -144,7 +153,8 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
             children: [
               Icon(Icons.group, size: screenWidth * 0.06),
               SizedBox(width: 8),
-              Text('26 Puestos', style: TextStyle(fontSize: screenWidth * 0.04)),
+              Text('26 Puestos',
+                  style: TextStyle(fontSize: screenWidth * 0.04)),
             ],
           ),
           SizedBox(height: 8),
@@ -162,7 +172,8 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('2 Pizarras', style: TextStyle(fontSize: screenWidth * 0.04)),
+                  Text('2 Pizarras',
+                      style: TextStyle(fontSize: screenWidth * 0.04)),
                   SizedBox(height: 8),
                   Text('Aire', style: TextStyle(fontSize: screenWidth * 0.04)),
                 ],
@@ -181,11 +192,3 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
     );
   }
 }
-
-
-
-
-
-
-
-
