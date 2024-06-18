@@ -6,12 +6,14 @@ class CustomButton extends StatelessWidget {
   final double height;
   final VoidCallback onPressed;
   final String label;
+  final Color? buttonColor; // Nuevo parámetro para el color del botón
 
   const CustomButton({
     required this.width,
     required this.height,
     required this.onPressed,
     required this.label,
+    this.buttonColor, // Asignación opcional del nuevo parámetro
   });
 
   @override
@@ -23,7 +25,7 @@ class CustomButton extends StatelessWidget {
         child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFFFD8204),
+            backgroundColor: buttonColor ?? Color(0xFFFD8204), // Usamos el color personalizado o naranja predeterminado
             foregroundColor: Colors.white,
             textStyle: TextStyle(fontSize: height * 0.32), // Adjusted to be relative to the height
             elevation: 4,
