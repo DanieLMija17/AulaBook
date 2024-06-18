@@ -10,13 +10,13 @@ class MySearch extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system, // Esto hace que la aplicación use el tema del sistema (claro u oscuro)
       theme: ThemeData(
-         brightness: Brightness.light, // Tema claro
+        brightness: Brightness.light, // Tema claro
         fontFamily: 'CircularXX',
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark, // Tema oscuro
         fontFamily: 'CircularXX',
-      ), 
+      ),
       home: SearchPage(),
     );
   }
@@ -34,7 +34,6 @@ class SearchPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Search'),
-        backgroundColor: Colors.white,
         foregroundColor: Colors.orange,
         elevation: 0,
       ),
@@ -62,14 +61,20 @@ class SearchPage extends StatelessWidget {
                   crossAxisSpacing: 20,
                 ),
                 itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Icon(categories[index].icon,
-                          size: 40, color: Colors.orange),
-                      SizedBox(height: 8),
-                      Text(categories[index].label,
-                          style: TextStyle(color: Colors.orange)),
-                    ],
+                  return InkWell(
+                    onTap: () {
+                      // Aquí puedes definir la acción que ocurre al presionar el icono
+                      print('Pressed ${categories[index].label}');
+                    },
+                    child: Column(
+                      children: [
+                        Icon(categories[index].icon,
+                            size: 40, color: Colors.orange),
+                        SizedBox(height: 8),
+                        Text(categories[index].label,
+                            style: TextStyle(color: Colors.orange)),
+                      ],
+                    ),
                   );
                 },
               ),
