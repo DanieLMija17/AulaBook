@@ -1,51 +1,58 @@
 --	TABLAS
 
 --TABLA USUARIO (ADMIN)
-CREATE TABLE USARIO(
+CREATE TABLE USUARIO(
 	User_ID serial PRIMARY KEY NOT NULL,
 	Nombre varchar(30) NOT NULL,
 	Cargo varchar(30) NOT NULL,
-	Departamento varchar(30)NOT NULL,
-);
+	Departamento varchar(30)NOT NULL
+)
 
---TABLA ALUMNO
-CREATE TABLE ALUMNO(
+--TABLA ALUMNO 
+CREATE TABLE ALUMNO( 
 	Carnet char(11) PRIMARY KEY NOT NULL,
 	Nombre varchar(30) NOT NULL,
 	Carrera varchar (40) NOT NULL,
 	Correo varchar(100) NOT NULL,
-	Trimestre bool NOT NULL
-);
+	Trimestre boolean NOT NULL
+)
 
 --TABLA MODULO
 CREATE TABLE MODULO(
 	Modulo_ID varchar(20) PRIMARY KEY NOT NULL
-);
+)
 
 --TABLA AULA
 CREATE TABLE AULA(
-	Nombre_salon varchar(15) PRIMARY KEY NOT NULL,
+	Codigo_aula varchar(15) PRIMARY KEY NOT NULL,
 	Modulo_ID varchar(15) NOT NULL,
 	Aire bool NOT NULL,
 	Video_beam bool NOT NULL,
-	Pizarra bool NOT NULL,
+	Pizarra bool NOT NULL, 
 	Computadora bool NOT NULL,
-	Pupitres integer NOT NULL,
+	Pupitres integer NOT NULL, 
+	Puntuacion_promedio double NOT NULL, 
 	FOREIGN KEY (Modulo_ID) REFERENCES MODULO(Modulo_ID)
-);
+)
 
 --TABLA RESERVA
 CREATE TABLE RESERVA(
 	Num_reserva serial PRIMARY KEY NOT NULL,
-	Nombre_salon varchar(15) NOT NULL,
+	Codigo_aula varchar(15) NOT NULL,
 	Carnet char(11) NOT NULL,
 	Categoria varchar(30) NOT NULL CHECK(Categoria IN('Clases','Preparaduria','Evento')),
 	Descripcion varchar(50) NOT NULL,
-	Status ENUM('pendiente','aprobado','rechazado','cancelado'),
-	FOREIGN KEY (Nombre_salon) REFERENCES AULA(Nombre_salon),
+	Status varchar(20) NOT NULL CHECK(Status IN ('pendiente', 'aprobado', 'rechazado', 'cancelado')),,
+	Puntuacion integer CHECK(Puntuacion IN (1, 2, 3, 4, 5)), 
+	Fecha_inicial timestamp NOT NULL,
+	Fecha_final timestamp NOT NULL,
+	FOREIGN KEY (Codigo_aula) REFERENCES AULA(Codigo_aula),
 	FOREIGN KEY (Carnet) REFERENCES ALUMNO(Carnet)
 	
-);
+)
+
+CREATE UNIQUE INDEX unique_reservation ON RESERVA (Codigo_aula, tstzrange(Fecha_inicial, Fecha_final, '[]'));
+	
 
 
 
