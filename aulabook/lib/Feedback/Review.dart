@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:aulabook/Componentes/custom_button.dart';
+import 'package:aulabook/HomePage/main.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(Review());
 
-class MyApp extends StatelessWidget {
+class Review extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -80,6 +81,10 @@ class _RatingScreenState extends State<RatingScreen> {
               onPressed: () {
                 // Aquí puedes manejar la acción del botón "Terminar"
                 print('Rating submitted: $_rating');
+                Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Main()),
+                    );
               },
               label: 'Terminar',
             ),
@@ -90,6 +95,10 @@ class _RatingScreenState extends State<RatingScreen> {
               onPressed: () {
                 // Aquí puedes manejar la acción del botón "Saltar"
                 print('Skip button pressed');
+                Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Main()),
+                    );
               },
               label: 'Saltar',
               buttonColor: Colors.grey.shade300, // Custom button color

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:aulabook/Componentes/custom_button.dart';
+import 'package:aulabook/AulaInfo/dateAndtimePickers.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Aula());
 }
 
-class MyApp extends StatelessWidget {
+class Aula extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -184,7 +185,13 @@ class _DescriptionWidgetState extends State<DescriptionWidget> {
           CustomButton(
             width: screenWidth * 0.85,
             height: screenWidth * 0.14,
-            onPressed: () {},
+            onPressed: () {
+              // Navegar a la segunda vista cuando se presiona el botón
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DateAndTimePickers()),
+              );
+            },
             label: 'Reservar',
           ),
         ],

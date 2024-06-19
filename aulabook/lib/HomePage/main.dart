@@ -3,10 +3,10 @@ import 'package:aulabook/Componentes/custom_button.dart';
 import 'package:aulabook/SearchPage/search.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Main());
 }
 
-class MyApp extends StatelessWidget {
+class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

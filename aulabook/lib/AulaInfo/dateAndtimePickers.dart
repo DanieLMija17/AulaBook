@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:aulabook/Componentes/custom_button.dart';
-// import 'package:intl/intl.dart';
+import 'package:intl/intl.dart';
+import 'package:aulabook/Feedback/Review.dart';
 
+void main() => runApp(DateAndTimePickers());
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
+class DateAndTimePickers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -49,8 +49,11 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: _selectedDate ?? DateTime.now(),
-      firstDate: DateTime(2000),
+      firstDate: DateTime.now(), // Only allow dates from today onwards
       lastDate: DateTime(2101),
+      selectableDayPredicate: (DateTime date) {
+        return date.weekday != DateTime.sunday; // Disable Sundays
+      },
       builder: (BuildContext context, Widget? child) {
         return Theme(
           data: ThemeData.light().copyWith(
@@ -60,7 +63,7 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
               surface: Colors.white, // Background color of date picker
               onSurface: Colors.black, // Text color of date picker
             ),
-            dialogBackgroundColor:Colors.white, // Background color of dialog
+            dialogBackgroundColor: Colors.white, // Background color of dialog
           ),
           child: child!,
         );
@@ -73,34 +76,72 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
   }
 
   Future<void> _selectTime(BuildContext context) async {
-    final TimeOfDay? picked = await showTimePicker(
+    final List<TimeOfDay> availableTimes = [
+      TimeOfDay(hour: 7, minute: 0),
+      TimeOfDay(hour: 8, minute: 45),
+      TimeOfDay(hour: 10, minute: 30),
+      TimeOfDay(hour: 12, minute: 15),
+      TimeOfDay(hour: 14, minute: 0),
+      TimeOfDay(hour: 15, minute: 45),
+      TimeOfDay(hour: 17, minute: 30),
+      TimeOfDay(hour: 19, minute: 15),
+    ];
+
+    await showModalBottomSheet(
       context: context,
-      initialTime: _selectedTime ?? TimeOfDay.now(),
-      builder: (BuildContext context, Widget? child) {
-        return Theme(
-          data: ThemeData.light().copyWith(
-            colorScheme: ColorScheme.light(
-              primary: Color(0xFFFD8204), // Header background color
-              onPrimary: Colors.white, // Header text color
-              surface: Colors.white, // Background color of time picker
-              onSurface: Colors.black, // Text color of time picker
-            ),
-            dialogBackgroundColor:Colors.white, // Background color of dialog
+      builder: (BuildContext context) {
+        return Container(
+          height: 250,
+          child: ListView.builder(
+            itemCount: availableTimes.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                title: Text(availableTimes[index].format(context)),
+                onTap: () {
+                  setState(() {
+                    _selectedTime = availableTimes[index];
+                  });
+                  Navigator.pop(context);
+                },
+              );
+            },
           ),
-          child: child!,
         );
       },
     );
-    if (picked != null && picked != _selectedTime)
-      setState(() {
-        _selectedTime = picked;
-      });
+  }
+
+  void _showErrorDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Error"),
+          content: Text("Debes seleccionar una fecha y una hora antes de continuar."),
+          actions: <Widget>[
+            TextButton(
+              child: Text("Aceptar"),
+              onPressed: () {
+                Navigator.of(context).pop(); // Cerrar el diálogo
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     var screenWidth = screenSize.width;
+
+    String formattedDate = _selectedDate != null
+        ? DateFormat('dd-MM-yyyy').format(_selectedDate!)
+        : '';
+    String formattedTime = _selectedTime != null
+        ? _selectedTime!.format(context)
+        : '';
 
     return Scaffold(
       appBar: AppBar(
@@ -117,7 +158,9 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
               ),
               child: IconButton(
                 icon: Icon(Icons.arrow_back, color: Color(0xFFB8B8B8)),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context); // This will navigate back to the previous screen
+                },
                 iconSize: 24,
                 padding: EdgeInsets.zero,
                 constraints: BoxConstraints(
@@ -161,14 +204,30 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
               SizedBox(height: 30),
               if (_selectedDate != null)
                 Text(
-                  "Dia Reservado: ${_selectedDate!.toLocal()}".split(' ')[0],
+                  "Dia Reservado: $formattedDate",
                   style: TextStyle(fontSize: 18),
                 ),
               if (_selectedTime != null)
                 Text(
-                  "Hora Reservada: ${_selectedTime!.format(context)}",
+                  "Hora Reservada: $formattedTime",
                   style: TextStyle(fontSize: 18),
                 ),
+              SizedBox(height: 20),
+              CustomButton(
+                width: screenWidth * 0.85,
+                height: screenWidth * 0.14,
+                onPressed: () {
+                  if (_selectedDate == null || _selectedTime == null) {
+                    _showErrorDialog(context);
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Review()),
+                    );
+                  }
+                },
+                label: 'Siguiente',
+              ),
             ],
           ),
         ),
@@ -176,6 +235,9 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
     );
   }
 }
+
+
+
 
 
 
