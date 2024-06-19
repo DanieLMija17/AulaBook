@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:aulabook/Componentes/custom_button.dart';
 import 'package:aulabook/SearchPage/search.dart';
+import 'package:postgres/postgres.dart';
 
 void main() {
   runApp(Main());
@@ -93,5 +94,78 @@ class InicioScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+// Logica de connecion a la base de datos 
+class AulasList extends StatefulWidget {
+  @override
+  _AulasListState createState() => _AulasListState();
+}
+
+class _AulasListState extends State<AulasList> {
+  late PostgreSQLConnection connection;
+  List<Map<String, dynamic>> aulas = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    connectToDatabase();
+  }
+
+    Future<void> connectToDatabase() async {
+
+    try {
+    connection = PostgreSQLConnection(
+      'postgres://postgres.jadjzhtigrudcopshqnm:[YOUR-PASSWORD]@aws-0-us-west-1.pooler.supabase.com:6543/postgres', //  URL del host en Supabase
+      6543, // Puerto de la bd
+      'postgres', // nombre de tu base de datos
+      username: 'postgres.jadjzhtigrudcopshqnm', // usuario de supabase
+      password: 'geomadre17*', //contraseña de la bd
+      );
+
+      await connection.open();
+      print('Conexión a la base de datos exitosa');
+      await fetchAulas();
+    } catch (e) {
+      print('Error al conectar a la base de datos: $e');
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+    Future<void> fetchAulas() async {
+    List<List<dynamic>> results = await connection.query('SELECT * FROM aulas');
+
+    setState(() {
+      aulas = results.map((row) {
+        return {
+          'id': row[0],
+          'nombre': row[1],
+          'capacidad': row[2],
+        };
+      }).toList();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: aulas.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(aulas[index]['nombre'] as String),
+          subtitle: Text('Capacidad: ${aulas[index]['capacidad']}'),
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    connection.close();
+    super.dispose();
   }
 }
