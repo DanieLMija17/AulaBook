@@ -29,7 +29,7 @@ class RatingScreen extends StatefulWidget {
 }
 
 class _RatingScreenState extends State<RatingScreen> {
-  double _rating = 3; // Initial rating
+  double _rating = 0; // Initial rating
 
   @override
   Widget build(BuildContext context) {
