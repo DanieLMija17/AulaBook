@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:aulabook/Componentes/custom_button.dart';
-import 'package:aulabook/AulaInfo/dateAndtimePickers.dart';
+import 'package:aulabook/Reserva/dateAndtimePickers.dart';
 
 void main() {
   runApp(Aula());
@@ -35,7 +35,9 @@ class Aula extends StatelessWidget {
                 ),
                 child: IconButton(
                   icon: Icon(Icons.arrow_back, color: Color(0xFFB8B8B8)),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   iconSize: 24,
                   padding: EdgeInsets.zero,
                   constraints: BoxConstraints(

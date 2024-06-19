@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:aulabook/AulaInfo/aula.dart';
 void main() => runApp(const MySearch());
 
 class MySearch extends StatelessWidget {
@@ -63,8 +63,14 @@ class SearchPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      // Aquí puedes definir la acción que ocurre al presionar el icono
-                      print('Pressed ${categories[index].label}');
+                      if (categories[index].label == 'Salon') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Aula()),
+                        );
+                      } else {
+                        print('Pressed ${categories[index].label}');
+                      }
                     },
                     child: Column(
                       children: [
