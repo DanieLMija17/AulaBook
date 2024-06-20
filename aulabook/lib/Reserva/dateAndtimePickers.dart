@@ -31,7 +31,39 @@ class DateAndTimePickers extends StatelessWidget {
           secondary: Color(0xFFFD8204),
         ),
       ),
-      home: DateTimePickerScreen(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('AulaBook'),
+          automaticallyImplyLeading: false,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xFFF3F8FE),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back, color: Color(0xFFB8B8B8)),
+                  onPressed: () {
+                    print('Back button pressed');
+                    Navigator.pop(context); // Navigate back to the previous screen
+                  },
+                  iconSize: 24,
+                  padding: EdgeInsets.zero,
+                  constraints: BoxConstraints(
+                    minHeight: 40,
+                    minWidth: 40,
+                  ),
+                  splashRadius: 24,
+                ),
+              ),
+            ),
+          ),
+        ),
+        body: DateTimePickerScreen(),
+      ),
     );
   }
 }
@@ -143,44 +175,15 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
         ? _selectedTime!.format(context)
         : '';
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('AulaBook'),
-        automaticallyImplyLeading: false,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color(0xFFF3F8FE),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: IconButton(
-                icon: Icon(Icons.arrow_back, color: Color(0xFFB8B8B8)),
-                onPressed: () {
-                  Navigator.pop(context); // This will navigate back to the previous screen
-                },
-                iconSize: 24,
-                padding: EdgeInsets.zero,
-                constraints: BoxConstraints(
-                  minHeight: 40,
-                  minWidth: 40,
-                ),
-                splashRadius: 24,
-              ),
-            ),
-          ),
-        ),
-      ),
-      body: Center(
+    return Center(
+      child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Selecciona el dia y la hora para reservar tu salon',
+                'Selecciona el día y la hora para reservar tu salón',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: screenWidth * 0.06,
@@ -192,7 +195,7 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
                 width: screenWidth * 0.85,
                 height: screenWidth * 0.14,
                 onPressed: () => _selectDate(context),
-                label: 'Dia',
+                label: 'Día',
               ),
               SizedBox(height: 20),
               CustomButton(
@@ -204,7 +207,7 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
               SizedBox(height: 30),
               if (_selectedDate != null)
                 Text(
-                  "Dia Reservado: $formattedDate",
+                  "Día Reservado: $formattedDate",
                   style: TextStyle(fontSize: 18),
                 ),
               if (_selectedTime != null)
@@ -235,9 +238,4 @@ class _DateTimePickerScreenState extends State<DateTimePickerScreen> {
     );
   }
 }
-
-
-
-
-
 

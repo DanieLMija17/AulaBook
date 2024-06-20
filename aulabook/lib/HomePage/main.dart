@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:aulabook/Componentes/custom_button.dart';
 import 'package:aulabook/SearchPage/search.dart';
-import 'package:postgres/postgres.dart';
+// import 'package:postgres/postgres.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+
+
+
+
 
 void main() {
   runApp(Main());
@@ -26,9 +32,22 @@ class Main extends StatelessWidget {
   }
 }
 
+
+
+
 class InicioScreen extends StatelessWidget {
+  final SupabaseClient supabaseClient;
+
+   InicioScreen({Key? key})
+      : supabaseClient = SupabaseClient(
+          'https://jadjzhtigrudcopshqnm.supabase.co', // Reemplaza con tu URL de Supabase
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImphZGp6aHRpZ3J1ZGNvcHNocW5tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTg3NTc3NzAsImV4cCI6MjAzNDMzMzc3MH0._DFGa5fZQpZGI-vAnoESq1ixvOMSX6dsvsx89YC2StY', // Reemplaza con tu clave pública de Supabase
+        ),
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    
     var screenSize = MediaQuery.of(context).size;
     var screenWidth = screenSize.width;
 
@@ -97,75 +116,77 @@ class InicioScreen extends StatelessWidget {
   }
 }
 
-// Logica de connecion a la base de datos 
-class AulasList extends StatefulWidget {
-  @override
-  _AulasListState createState() => _AulasListState();
-}
+// // Logica de connecion a la base de datos 
+// class AulasList extends StatefulWidget {
+//   @override
+//   _AulasListState createState() => _AulasListState();
+// }
 
-class _AulasListState extends State<AulasList> {
-  late PostgreSQLConnection connection;
-  List<Map<String, dynamic>> aulas = [];
-  bool isLoading = true;
+// class _AulasListState extends State<AulasList> {
+//   late PostgreSQLConnection connection;
+//   List<Map<String, dynamic>> aulas = [];
+//   bool isLoading = true;
 
-  @override
-  void initState() {
-    super.initState();
-    connectToDatabase();
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     connectToDatabase();
+//   }
 
-    Future<void> connectToDatabase() async {
+//     Future<void> connectToDatabase() async {
 
-    try {
-    connection = PostgreSQLConnection(
-      'postgres://postgres.jadjzhtigrudcopshqnm:[YOUR-PASSWORD]@aws-0-us-west-1.pooler.supabase.com:6543/postgres', //  URL del host en Supabase
-      6543, // Puerto de la bd
-      'postgres', // nombre de tu base de datos
-      username: 'postgres.jadjzhtigrudcopshqnm', // usuario de supabase
-      password: 'geomadre17*', //contraseña de la bd
-      );
+//     try {
+//     connection = PostgreSQLConnection(
+//       'postgres://postgres.jadjzhtigrudcopshqnm:[YOUR-PASSWORD]@aws-0-us-west-1.pooler.supabase.com:6543/postgres', //  URL del host en Supabase
+//       6543, // Puerto de la bd
+//       'postgres', // nombre de tu base de datos
+//       username: 'postgres.jadjzhtigrudcopshqnm', // usuario de supabase
+//       password: 'geomadre17*', //contraseña de la bd
+//       );
 
-      await connection.open();
-      print('Conexión a la base de datos exitosa');
-      await fetchAulas();
-    } catch (e) {
-      print('Error al conectar a la base de datos: $e');
-      setState(() {
-        isLoading = false;
-      });
-    }
-  }
+//       await connection.open();
+//       print('Conexión a la base de datos exitosa');
+//       await fetchAulas();
+//     } catch (e) {
+//       print('Error al conectar a la base de datos: $e');
+//       setState(() {
+//         isLoading = false;
+//       });
+//     }
+//   }
 
-    Future<void> fetchAulas() async {
-    List<List<dynamic>> results = await connection.query('SELECT * FROM aulas');
+//     Future<void> fetchAulas() async {
+//     List<List<dynamic>> results = await connection.query('SELECT * FROM aulas');
 
-    setState(() {
-      aulas = results.map((row) {
-        return {
-          'id': row[0],
-          'nombre': row[1],
-          'capacidad': row[2],
-        };
-      }).toList();
-    });
-  }
+//     setState(() {
+//       aulas = results.map((row) {
+//         return {
+//           'id': row[0],
+//           'nombre': row[1],
+//           'capacidad': row[2],
+//         };
+//       }).toList();
+//     });
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: aulas.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(aulas[index]['nombre'] as String),
-          subtitle: Text('Capacidad: ${aulas[index]['capacidad']}'),
-        );
-      },
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListView.builder(
+//       itemCount: aulas.length,
+//       itemBuilder: (context, index) {
+//         return ListTile(
+//           title: Text(aulas[index]['nombre'] as String),
+//           subtitle: Text('Capacidad: ${aulas[index]['capacidad']}'),
+//         );
+//       },
+//     );
+//   }
 
-  @override
-  void dispose() {
-    connection.close();
-    super.dispose();
-  }
-}
+//   @override
+//   void dispose() {
+//     connection.close();
+//     super.dispose();
+//   }
+// }
+
+
