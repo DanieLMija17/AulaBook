@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:aulabook/Componentes/custom_button.dart';
-import 'package:aulabook/SearchPage/search.dart';
+import 'package:aulabook/HomePage/login.dart';
 // import 'package:postgres/postgres.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -100,7 +100,7 @@ class InicioScreen extends StatelessWidget {
                         // Navegar a la segunda vista cuando se presiona el botón
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => MySearch()),
+                          MaterialPageRoute(builder: (context) => LoginScreenApp()),
                         );
                       },
                       label: 'Comenzar',
