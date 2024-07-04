@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:aulabook/Componentes/custom_button.dart';
+import 'package:aulabook/Componentes/help_button.dart';
 import 'package:intl/intl.dart';
 import 'package:aulabook/Feedback/Review.dart';
+
 
 void main() => runApp(DateAndTimePickers());
 
@@ -61,6 +63,9 @@ class DateAndTimePickers extends StatelessWidget {
               ),
             ),
           ),
+          actions: [
+            HelpButton(),
+          ],
         ),
         body: DateTimePickerScreen(),
       ),
