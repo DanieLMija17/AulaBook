@@ -22,24 +22,24 @@ class MySearch extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Search'),
+          title: const Text('Search'),
           foregroundColor: Colors.orange,
           elevation: 0,
           actions: [
             IconButton(
-              icon: Icon(Icons.exit_to_app, color: Colors.orange),
+              icon: const Icon(Icons.exit_to_app, color: Colors.orange),
               onPressed: () {
                 // Aquí puedes agregar la lógica para cerrar sesión
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Main()),
+                    MaterialPageRoute(builder: (context) => const Main()),
                   );
                 // Navegar a la pantalla de inicio de sesión o realizar cualquier otra acción necesaria
               },
             ),
           ],
         ),
-        body: SearchPage(),
+        body:  SearchPage(),
       ),
     );
   }
@@ -52,6 +52,8 @@ class SearchPage extends StatelessWidget {
     Category(icon: Icons.apartment, label: 'Modulo'),
   ];
 
+  SearchPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -61,17 +63,17 @@ class SearchPage extends StatelessWidget {
           TextField(
             decoration: InputDecoration(
               hintText: 'Buscar',
-              prefixIcon: Icon(Icons.search, color: Colors.orange),
+              prefixIcon: const Icon(Icons.search, color: Colors.orange),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Expanded(
             child: GridView.builder(
               itemCount: categories.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 childAspectRatio: 3 / 2,
                 mainAxisSpacing: 20,
@@ -83,7 +85,7 @@ class SearchPage extends StatelessWidget {
                     if (categories[index].label == 'Salon') {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Aula()),
+                        MaterialPageRoute(builder: (context) => const Aula()),
                       );
                     } else {
                       print('Pressed ${categories[index].label}');
@@ -93,9 +95,9 @@ class SearchPage extends StatelessWidget {
                     children: [
                       Icon(categories[index].icon,
                           size: 40, color: Colors.orange),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Text(categories[index].label,
-                          style: TextStyle(color: Colors.orange)),
+                          style: const TextStyle(color: Colors.orange)),
                     ],
                   ),
                 );

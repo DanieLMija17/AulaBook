@@ -4,10 +4,20 @@ import 'package:aulabook/Componentes/custom_button.dart';
 import 'package:aulabook/Componentes/help_button.dart';
 import 'package:aulabook/HomePage/register.dart';
 import 'package:aulabook/SearchPage/search.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:aulabook/HomePage/auth.dart';
 
-void main() => runApp(LoginScreenApp());
+void main() => runApp(const LoginScreenApp());
+
+// AQUIIII
+// class _LoginPageState extends State<LoginPage> {
+//   String? errorMessage = '';
+//   bool isLogin = true;
+//   }
 
 class LoginScreenApp extends StatelessWidget {
+  const LoginScreenApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,8 +26,8 @@ class LoginScreenApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         fontFamily: 'CircularXX',
-        primaryColor: Color(0xFFFD8204), // Primary color for light theme
-        colorScheme: ColorScheme.light(
+        primaryColor: const Color(0xFFFD8204), // Primary color for light theme
+        colorScheme: const ColorScheme.light(
           primary: Color(0xFFFD8204),
           onPrimary: Colors.white,
           secondary: Color(0xFFFD8204),
@@ -26,8 +36,8 @@ class LoginScreenApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         fontFamily: 'CircularXX',
-        primaryColor: Color(0xFFFD8204), // Primary color for dark theme
-        colorScheme: ColorScheme.dark(
+        primaryColor: const Color(0xFFFD8204), // Primary color for dark theme
+        colorScheme: const ColorScheme.dark(
           primary: Color(0xFFFD8204),
           onPrimary: Colors.white,
           secondary: Color(0xFFFD8204),
@@ -35,7 +45,7 @@ class LoginScreenApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('AulaBook'),
+          title: const Text('AulaBook'),
           automaticallyImplyLeading: false,
           leading: Padding(
             padding: const EdgeInsets.only(left: 8.0),
@@ -43,18 +53,18 @@ class LoginScreenApp extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xFFF3F8FE),
+                  color: const Color(0xFFF3F8FE),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: IconButton(
-                  icon: Icon(Icons.arrow_back, color: Color(0xFFB8B8B8)),
+                  icon: const Icon(Icons.arrow_back, color: Color(0xFFB8B8B8)),
                   onPressed: () {
                     print('Back button pressed');
                     Navigator.pop(context); // Navigate back to the previous screen
                   },
                   iconSize: 24,
                   padding: EdgeInsets.zero,
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     minHeight: 40,
                     minWidth: 40,
                   ),
@@ -63,20 +73,24 @@ class LoginScreenApp extends StatelessWidget {
               ),
             ),
           ),
-          actions: [
+          actions: const [
             Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: EdgeInsets.only(right: 8.0),
               child: HelpButton(),
             ),
           ],
         ),
-        body: LoginScreen(),
+        body: const LoginScreen(),
       ),
     );
   }
 }
 
+
+
 class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -97,7 +111,7 @@ class LoginScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Text(
                 'Ingresar su correo electrónico',
                 textAlign: TextAlign.center,
@@ -106,14 +120,14 @@ class LoginScreen extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              SizedBox(height: 10),
-              TextField(
+              const SizedBox(height: 10),
+              const TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Correo electrónico',
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 'Ingrese su contraseña',
                 textAlign: TextAlign.center,
@@ -122,20 +136,20 @@ class LoginScreen extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              SizedBox(height: 10),
-              TextField(
+              const SizedBox(height: 10),
+              const TextField(
                 obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Contraseña',
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => RegisterScreenApp()),
+                    MaterialPageRoute(builder: (context) => const RegisterScreenApp()),
                   );
                 },
                 child: Text(
@@ -147,7 +161,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton.icon(
                 onPressed: () {
                   // Handle Google login
@@ -170,17 +184,17 @@ class LoginScreen extends StatelessWidget {
                     fontSize: screenWidth * 0.045,
                   ),
                   minimumSize: Size(screenWidth * 0.85, screenWidth * 0.14),
-                  side: BorderSide(color: Colors.grey),
+                  side: const BorderSide(color: Colors.grey),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               CustomButton(
                 width: screenWidth * 0.85,
                 height: screenWidth * 0.14,
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MySearch()),
+                    MaterialPageRoute(builder: (context) => const MySearch()),
                   );
                 },
                 label: 'Siguiente',

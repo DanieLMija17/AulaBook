@@ -3,9 +3,11 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:aulabook/Componentes/custom_button.dart';
 import 'package:aulabook/HomePage/main.dart';
 
-void main() => runApp(Review());
+void main() => runApp(const Review());
 
 class Review extends StatelessWidget {
+  const Review({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,12 +21,14 @@ class Review extends StatelessWidget {
         brightness: Brightness.dark,
         fontFamily: 'CircularXX',
       ),
-      home: RatingScreen(),
+      home: const RatingScreen(),
     );
   }
 }
 
 class RatingScreen extends StatefulWidget {
+  const RatingScreen({super.key});
+
   @override
   _RatingScreenState createState() => _RatingScreenState();
 }
@@ -51,14 +55,14 @@ class _RatingScreenState extends State<RatingScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             RatingBar.builder(
               initialRating: _rating,
               minRating: 0,
               direction: Axis.horizontal,
               allowHalfRating: true,
               itemCount: 5,
-              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+              itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
               itemBuilder: (context, index) {
                 return Icon(
                   Icons.star,
@@ -74,7 +78,7 @@ class _RatingScreenState extends State<RatingScreen> {
                 });
               },
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             CustomButton(
               width: screenWidth * 0.85,
               height: screenWidth * 0.14,
@@ -83,12 +87,12 @@ class _RatingScreenState extends State<RatingScreen> {
                 print('Rating submitted: $_rating');
                 Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Main()),
+                      MaterialPageRoute(builder: (context) => const Main()),
                     );
               },
               label: 'Terminar',
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             CustomButton(
               width: screenWidth * 0.85,
               height: screenWidth * 0.14,
@@ -97,7 +101,7 @@ class _RatingScreenState extends State<RatingScreen> {
                 print('Skip button pressed');
                 Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Main()),
+                      MaterialPageRoute(builder: (context) => const Main()),
                     );
               },
               label: 'Saltar',

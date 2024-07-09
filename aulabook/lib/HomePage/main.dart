@@ -10,10 +10,12 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 
 void main() {
-  runApp(Main());
+  runApp(const Main());
 }
 
 class Main extends StatelessWidget {
+  const Main({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -38,12 +40,11 @@ class Main extends StatelessWidget {
 class InicioScreen extends StatelessWidget {
   final SupabaseClient supabaseClient;
 
-   InicioScreen({Key? key})
+   InicioScreen({super.key})
       : supabaseClient = SupabaseClient(
           'https://jadjzhtigrudcopshqnm.supabase.co', // Reemplaza con tu URL de Supabase
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImphZGp6aHRpZ3J1ZGNvcHNocW5tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTg3NTc3NzAsImV4cCI6MjAzNDMzMzc3MH0._DFGa5fZQpZGI-vAnoESq1ixvOMSX6dsvsx89YC2StY', // Reemplaza con tu clave pública de Supabase
-        ),
-        super(key: key);
+        );
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +72,7 @@ class InicioScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       width: screenWidth * 0.85, // Ancho igual al botón
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,7 +101,7 @@ class InicioScreen extends StatelessWidget {
                         // Navegar a la segunda vista cuando se presiona el botón
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => LoginScreenApp()),
+                          MaterialPageRoute(builder: (context) => const LoginScreenApp()),
                         );
                       },
                       label: 'Comenzar',

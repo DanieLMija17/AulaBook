@@ -4,6 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 
 class HelpButton extends StatelessWidget {
+  const HelpButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -11,12 +13,12 @@ class HelpButton extends StatelessWidget {
       child: Align(
         alignment: Alignment.centerRight,
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0xFFF3F8FE),
             shape: BoxShape.circle,
           ),
           child: IconButton(
-            icon: Icon(Icons.help_outline, color: Color(0xFFB8B8B8)),
+            icon: const Icon(Icons.help_outline, color: Color(0xFFB8B8B8)),
             onPressed: () async {
               // Solicitar permisos de almacenamiento
               var status = await Permission.storage.request();
@@ -26,7 +28,7 @@ class HelpButton extends StatelessWidget {
                 // Mostrar mensaje al usuario de que necesita conceder el permiso
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text('Es necesario otorgar permiso de almacenamiento para descargar el PDF.'),
+                    content: const Text('Es necesario otorgar permiso de almacenamiento para descargar el PDF.'),
                     action: SnackBarAction(
                       label: 'Aceptar',
                       onPressed: () {
@@ -43,7 +45,7 @@ class HelpButton extends StatelessWidget {
             },
             iconSize: 24,
             padding: EdgeInsets.zero,
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               minHeight: 40,
               minWidth: 40,
             ),

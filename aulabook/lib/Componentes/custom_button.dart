@@ -8,7 +8,7 @@ class CustomButton extends StatelessWidget {
   final String label;
   final Color? buttonColor; // Nuevo parámetro para el color del botón
 
-  const CustomButton({
+  const CustomButton({super.key, 
     required this.width,
     required this.height,
     required this.onPressed,
@@ -25,11 +25,11 @@ class CustomButton extends StatelessWidget {
         child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
-            backgroundColor: buttonColor ?? Color(0xFFFD8204), // Usamos el color personalizado o naranja predeterminado
+            backgroundColor: buttonColor ?? const Color(0xFFFD8204), // Usamos el color personalizado o naranja predeterminado
             foregroundColor: Colors.white,
             textStyle: TextStyle(fontSize: height * 0.32), // Adjusted to be relative to the height
             elevation: 4,
-            shadowColor: Color(0x3D0038FF),
+            shadowColor: const Color(0x3D0038FF),
           ),
           child: Text(label),
         ),

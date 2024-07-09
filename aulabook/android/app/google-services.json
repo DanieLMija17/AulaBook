@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "394153124904",
+    "project_id": "aulabook-5723c",
+    "storage_bucket": "aulabook-5723c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394153124904:android:6719d3a65b0d0710fd011d",
+        "android_client_info": {
+          "package_name": "com.example.aulabook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAcCHtTCciSQSYTKzWWVDB3r4AQk5EDSw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

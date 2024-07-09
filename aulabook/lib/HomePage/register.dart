@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:aulabook/Componentes/custom_button.dart';
 
-void main() => runApp(RegisterScreenApp());
+void main() => runApp(const RegisterScreenApp());
 
 class RegisterScreenApp extends StatelessWidget {
+  const RegisterScreenApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,8 +14,8 @@ class RegisterScreenApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         fontFamily: 'CircularXX',
-        primaryColor: Color(0xFFFD8204), // Primary color for light theme
-        colorScheme: ColorScheme.light(
+        primaryColor: const Color(0xFFFD8204), // Primary color for light theme
+        colorScheme: const ColorScheme.light(
           primary: Color(0xFFFD8204),
           onPrimary: Colors.white,
           secondary: Color(0xFFFD8204),
@@ -22,8 +24,8 @@ class RegisterScreenApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         fontFamily: 'CircularXX',
-        primaryColor: Color(0xFFFD8204), // Primary color for dark theme
-        colorScheme: ColorScheme.dark(
+        primaryColor: const Color(0xFFFD8204), // Primary color for dark theme
+        colorScheme: const ColorScheme.dark(
           primary: Color(0xFFFD8204),
           onPrimary: Colors.white,
           secondary: Color(0xFFFD8204),
@@ -31,7 +33,7 @@ class RegisterScreenApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('AulaBook'),
+          title: const Text('AulaBook'),
           automaticallyImplyLeading: false,
           leading: Padding(
             padding: const EdgeInsets.only(left: 8.0),
@@ -39,18 +41,18 @@ class RegisterScreenApp extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xFFF3F8FE),
+                  color: const Color(0xFFF3F8FE),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: IconButton(
-                  icon: Icon(Icons.arrow_back, color: Color(0xFFB8B8B8)),
+                  icon: const Icon(Icons.arrow_back, color: Color(0xFFB8B8B8)),
                   onPressed: () {
                     print('Back button pressed');
                     Navigator.pop(context); // Navigate back to the previous screen
                   },
                   iconSize: 24,
                   padding: EdgeInsets.zero,
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     minHeight: 40,
                     minWidth: 40,
                   ),
@@ -60,13 +62,15 @@ class RegisterScreenApp extends StatelessWidget {
             ),
           ),
         ),
-        body: RegisterScreen(),
+        body: const RegisterScreen(),
       ),
     );
   }
 }
 
 class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -87,7 +91,7 @@ class RegisterScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Text(
                 'Ingresar su correo electrónico',
                 textAlign: TextAlign.center,
@@ -96,14 +100,14 @@ class RegisterScreen extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              SizedBox(height: 10),
-              TextField(
+              const SizedBox(height: 10),
+              const TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Correo electrónico',
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 'Ingrese su contraseña',
                 textAlign: TextAlign.center,
@@ -112,15 +116,15 @@ class RegisterScreen extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              SizedBox(height: 10),
-              TextField(
+              const SizedBox(height: 10),
+              const TextField(
                 obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Contraseña',
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               CustomButton(
                 width: screenWidth * 0.85,
                 height: screenWidth * 0.14,

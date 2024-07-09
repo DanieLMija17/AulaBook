@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,12 +19,14 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         fontFamily: 'CircularXX',
       ),
-      home: EmailInputPage(),
+      home: const EmailInputPage(),
     );
   }
 }
 
 class EmailInputPage extends StatefulWidget {
+  const EmailInputPage({super.key});
+
   @override
   _EmailInputPageState createState() => _EmailInputPageState();
 }
@@ -55,7 +59,7 @@ class _EmailInputPageState extends State<EmailInputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Input Email'),
+        title: const Text('Input Email'),
         elevation: 0,
         backgroundColor: Colors.orange,
       ),
@@ -65,7 +69,7 @@ class _EmailInputPageState extends State<EmailInputPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'Escribe tu correo UNIMET',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -74,7 +78,7 @@ class _EmailInputPageState extends State<EmailInputPage> {
                   color: Colors.orange,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
@@ -85,13 +89,13 @@ class _EmailInputPageState extends State<EmailInputPage> {
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _sendEmail,
                 style: ElevatedButton.styleFrom(
                 // primary: Colors.orange,
                 ),
-                child: Text('Enviar'),
+                child: const Text('Enviar'),
               ),
             ],
           ),
