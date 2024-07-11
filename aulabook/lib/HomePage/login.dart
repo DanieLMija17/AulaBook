@@ -76,7 +76,35 @@ class LoginScreenApp extends StatelessWidget {
   }
 }
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Error"),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: Text("Aceptar"),
+              onPressed: () {
+                Navigator.of(context).pop(); // Cerrar el diálogo
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -108,6 +136,7 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 10),
               TextField(
+                controller: emailController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Correo electrónico',
@@ -124,6 +153,7 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 10),
               TextField(
+                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -178,10 +208,14 @@ class LoginScreen extends StatelessWidget {
                 width: screenWidth * 0.85,
                 height: screenWidth * 0.14,
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MySearch()),
-                  );
+                  if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+                    _showErrorDialog("Debe introducir un correo y una contraseña para iniciar sesión.");
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MySearch()),
+                    );
+                  }
                 },
                 label: 'Siguiente',
               ),
@@ -192,6 +226,7 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+
 
 
 

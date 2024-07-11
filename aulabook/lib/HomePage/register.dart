@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:aulabook/Componentes/custom_button.dart';
+import 'package:aulabook/HomePage/login.dart';
 
 void main() => runApp(RegisterScreenApp());
 
@@ -66,7 +67,35 @@ class RegisterScreenApp extends StatelessWidget {
   }
 }
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
+  @override
+  _RegisterScreenState createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Error"),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: Text("Aceptar"),
+              onPressed: () {
+                Navigator.of(context).pop(); // Cerrar el diálogo
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -98,6 +127,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               SizedBox(height: 10),
               TextField(
+                controller: emailController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Correo electrónico',
@@ -114,6 +144,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               SizedBox(height: 10),
               TextField(
+                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -125,7 +156,14 @@ class RegisterScreen extends StatelessWidget {
                 width: screenWidth * 0.85,
                 height: screenWidth * 0.14,
                 onPressed: () {
-                  // Handle registration
+                  if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+                    _showErrorDialog("Debe introducir un correo y una contraseña para crear la cuenta.");
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreenApp()),
+                    );
+                  }
                 },
                 label: 'Crear cuenta',
               ),
